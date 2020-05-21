@@ -35,3 +35,4 @@ When running the main pass predictor you may see an incomplete pass error in the
 
 The program ignores these errors and skips the satellite entirely.
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
