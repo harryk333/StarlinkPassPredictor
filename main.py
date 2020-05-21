@@ -108,7 +108,7 @@ print("Astronomical Twilght is " + twilight.strftime('%Y-%m-%d %H:%M:%S') )
 
 
 #Find all passes
-passes = starlinkPassFinder(twilight, stop, loc, params, path)
+passes = starlinkPassPredictor(twilight, stop, loc, params, path)
 
 #Select some to observe
 passes = selectStarlinkPasses(passes, timePer, path)

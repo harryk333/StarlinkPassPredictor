@@ -31,7 +31,7 @@ from loadFile import *
 # Find all starlink passes for a given date range and location
 # Args: start = datetime, stop = datetime, loc = skyfield Topos, path = string
 # Returns: array of dict
-def starlinkPassFinder(start, stop, loc, params = [False, None, False, 0], path=None):
+def starlinkPassPredictor(start, stop, loc, params = [False, None, False, 0], path=None):
 
 	sunUp, moonUp, eclipsed, minAlt = params
 
