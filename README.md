@@ -7,6 +7,7 @@ This program utilizes the Skyfield python library for all the behind the scenes 
 Notably for calculating satellite positions Skyfield utilizes the proper SGP4 algorithms to match those used to generate a TLE and should the most accurate results.
 
 [Skyfield Homepage](https://rhodesmill.org/skyfield/)
+
 [Skyfield on GitHub](https://github.com/skyfielders/python-skyfield)
 
 ### Installing Skyfield
