@@ -133,7 +133,7 @@ for p in passes:
 	obs.append([p["name"],p["maxTime"],offset,p["maxRA"],p["maxDec"],p["maxAlt"],p["maxAz"]])
 
 #Write ACP plan for Pomenis
-writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, path + "/" + filename)
+writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, path + "/" + filename, False)
 
 
 
@@ -185,7 +185,7 @@ for p in passes:
 	obs.append([p["name"],p["maxTime"],offset,p["maxRA"],p["maxDec"],p["maxAlt"],p["maxAz"]])
 
 #Write ACP plan for Pomenis
-writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, path + "/" + filename)
+writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, path + "/" + filename, True)
 
 
 ###########################

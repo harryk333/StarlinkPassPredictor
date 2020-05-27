@@ -29,7 +29,7 @@ import datetime as dt
 # observations array should be list of format [[name, date, RA, Dec]]
 # Args: observations = array, exposure = num, repeat = num, filters = char, binning = num, imagepath = string, filename = string
 # Returns: nothing
-def writeAcpPlan(observations, Exposure=10, Repeat=1, Filters="v", Binning=1, imagePath = "E:\\data" , filename="plan.txt"):
+def writeAcpPlan(observations, Exposure=10, Repeat=1, Filters="v", Binning=1, imagePath = "E:\\data" , filename="plan.txt", shutdown=False):
 	
 	#Make a new file or overwrite an old one
 	f = open(filename, "w")
@@ -105,6 +105,8 @@ def writeAcpPlan(observations, Exposure=10, Repeat=1, Filters="v", Binning=1, im
 		f.write("%s_\t%s\t%s\n\n\n" % (name, RA, Dec))
 
 
+	if shutdown:
+		f.write("#shutdown\n")
 
 	#Close the file for prosperity 
 	f.close()
