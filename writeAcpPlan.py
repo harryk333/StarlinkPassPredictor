@@ -38,6 +38,9 @@ def writeAcpPlan(observations, Exposure=10, Repeat=1, Filters="v", Binning=1, im
 	#Default save path format
 	f.write("#DIR " + imagePath + "\n\n\n")
 
+	#Disable dithering
+	f.write("#dither 0\n\n\n")
+
 
 	#Autofocus
 	#Wait until 5min before first sat to autofocus

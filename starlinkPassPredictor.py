@@ -31,7 +31,7 @@ from loadFile import *
 # Find all starlink passes for a given date range and location
 # Args: start = datetime, stop = datetime, loc = skyfield Topos, path = string
 # Returns: array of dict
-def starlinkPassPredictor(start, stop, loc, params = [False, None, False, 0], path=None):
+def starlinkPassPredictor(start, stop, loc, params = [False, None, False, 0], path=None, filename="observablePasses"):
 
 	sunUp, moonUp, eclipsed, minAlt = params
 
@@ -77,7 +77,7 @@ def starlinkPassPredictor(start, stop, loc, params = [False, None, False, 0], pa
 
 	if path != None:
 		#Save list of observable passes to csv file
-		saveCSV(path + "/" + "observablePasses.csv", makePassArray(allPasses), allPasses[0].keys())
+		saveCSV(path + "/" + filename + ".csv", makePassArray(allPasses), allPasses[0].keys())
 
 
 	return allPasses
@@ -88,7 +88,7 @@ def starlinkPassPredictor(start, stop, loc, params = [False, None, False, 0], pa
 # select Starlink passes with time allowance inbetween
 # Args: passes = array of dict, timePer = num, path = string
 # Returns: array of dict
-def selectStarlinkPasses(passes, timePer, path=None):
+def selectStarlinkPasses(passes, timePer, path=None, filename="selectedPasses"):
 
 	#Sort by time
 	passes.sort(key=lambda p: p["maxTime"])
@@ -112,7 +112,7 @@ def selectStarlinkPasses(passes, timePer, path=None):
 
 	if path != None:
 		#Save list of selected passes to csv file
-		saveCSV(path + "/" + "selectedPasses.csv", makePassArray(selectPasses), selectPasses[0].keys())
+		saveCSV(path + "/" + filename + ".csv", makePassArray(selectPasses), selectPasses[0].keys())
 
 
 	return selectPasses
