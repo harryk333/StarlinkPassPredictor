@@ -34,6 +34,10 @@ def writeAcpPlan(observations, Exposure=10, Repeat=1, Filters="v", Binning=1, im
 	#Make a new file or overwrite an old one
 	f = open(filename, "w")
 
+	#Header to state when plan starts and ends
+	f.write("; Start at %s\n" % (observations[0][1] - dt.timedelta(seconds = 300+480)).strftime('%Y/%m/%d %H:%M:%S'))
+	f.write("; End at %s\n\n\n" % observations[-1][1].strftime('%Y/%m/%d %H:%M:%S'))
+
 
 	#Default save path format
 	f.write("#DIR " + imagePath + "\n\n\n")

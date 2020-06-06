@@ -55,22 +55,24 @@ eclipsed = False
 
 params = [sunUp, moonUp, eclipsed, minAlt]
 
-#start = dt.datetime.utcnow().replace(hour=0, minute=00, second=00)
-#stop = dt.datetime.utcnow().replace(hour=5, minute=00, second=00)
+start = dt.datetime.utcnow().replace(hour=0, minute=00, second=00)
+stop = dt.datetime.utcnow().replace(hour=4, minute=00, second=00)
 
-start = dt.datetime(2020,5,28,0,00,00)
-stop = dt.datetime(2020,5,28,5,00,00)
+#start = dt.datetime(2020,5,28,0,00,00)
+#stop = dt.datetime(2020,5,28,5,00,00)
 
 loc = locations["Lemmon"]
 
-imagePath =  "F:\\++__2020.5__++\\Sats\\%s_Starlink" % (start.strftime('%Y-%m-%d'))
+imagePath = "F:\\++__2020.5__++\\Sats\\%s_Starlink" % (start.strftime('%Y-%m-%d'))
 
+staticPath = "C:\\Users\\Pomenis\\Documents\\ACP Astronomy\\Plans"
 
 ###########################
 
 
 #Make a new directory for todays data
-path = start.strftime('%Y-%m-%d')
+#path = start.strftime('%Y-%m-%d')
+path = imagePath
 
 if os.path.isdir(path):
 	print("%s already exists, opening it..." % path)
@@ -113,7 +115,6 @@ print("Astronomical Twilght is " + twilight.strftime('%Y-%m-%d %H:%M:%S') )
 
 #Find all passes
 passes = starlinkPassPredictor(twilight, stop, loc, params, path, "selectedPassesEvening")
-# passes = starlinkPassPredictor(start, twilight, loc, params, path)
 
 
 #Select some to observe
@@ -134,6 +135,7 @@ for p in passes:
 
 #Write ACP plan for Pomenis
 writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, path + "/" + filename, False)
+writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, staticPath + "/" + filename, False)
 
 
 
@@ -141,11 +143,11 @@ writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath
 
 print("\n\n ### MORNING ### \n\n")
 
-#start = dt.datetime.utcnow().replace(hour=9, minute=00, second=00)
-#stop = dt.datetime.utcnow().replace(hour=15, minute=00, second=00)
+start = dt.datetime.utcnow().replace(hour=9, minute=00, second=00)
+stop = dt.datetime.utcnow().replace(hour=15, minute=00, second=00)
 
-start = dt.datetime(2020,5,28,9,00,00)
-stop = dt.datetime(2020,5,28,15,00,00)
+#start = dt.datetime(2020,5,28,9,00,00)
+#stop = dt.datetime(2020,5,28,15,00,00)
 
 
 #Determine when is sunset and twilight
@@ -186,6 +188,7 @@ for p in passes:
 
 #Write ACP plan for Pomenis
 writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, path + "/" + filename, True)
+writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, staticPath + "/" + filename, True)
 
 
 ###########################
