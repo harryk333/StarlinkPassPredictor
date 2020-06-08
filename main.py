@@ -46,7 +46,7 @@ filterLetter = "v"
 binning = 1
 
 offset = 9 #offset the requested time to allow for slewing etc. 6 sec for starting at center of FOV. increase to trigger sooner
-timePer = dt.timedelta(seconds=120) #minimum number of sec to wait before next target
+timePer = dt.timedelta(seconds=90) #minimum number of sec to wait before next target
 
 minAlt = 20
 sunUp = False
