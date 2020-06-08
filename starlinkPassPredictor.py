@@ -21,6 +21,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
+import os
+
 from findPass import *
 from satFunctions import *
 from loadFile import *
@@ -39,7 +41,7 @@ def starlinkPassPredictor(start, stop, loc, params = [False, None, False, 0], pa
 	print("Downloading TLE data from Celestrak...")
 	url = "https://celestrak.com/NORAD/elements/supplemental/starlink.txt"
 	tleList = loadFileURL(url)
-	saveFile(tleList, path + "/starlinkTLE.txt")
+	saveFile(tleList, os.path.join(path, "starlinkTLE.txt"))
 	print("Downloaded " + str(len(tleList)) + " valid TLEs")
 
 	print("Date Range: " + start.strftime('%Y-%m-%d %H:%M:%S') + " to " + stop.strftime('%Y-%m-%d %H:%M:%S'))
@@ -77,7 +79,7 @@ def starlinkPassPredictor(start, stop, loc, params = [False, None, False, 0], pa
 
 	if path != None:
 		#Save list of observable passes to csv file
-		saveCSV(path + "/" + filename + ".csv", makePassArray(allPasses), allPasses[0].keys())
+		saveCSV( os.path.join(path, filename + ".csv"), makePassArray(allPasses), allPasses[0].keys())
 
 
 	return allPasses
@@ -112,7 +114,7 @@ def selectStarlinkPasses(passes, timePer, path=None, filename="selectedPasses"):
 
 	if path != None:
 		#Save list of selected passes to csv file
-		saveCSV(path + "/" + filename + ".csv", makePassArray(selectPasses), selectPasses[0].keys())
+		saveCSV( os.path.join(path, filename + ".csv"), makePassArray(selectPasses), selectPasses[0].keys())
 
 
 	return selectPasses

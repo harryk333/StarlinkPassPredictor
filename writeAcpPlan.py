@@ -75,7 +75,7 @@ def writeAcpPlan(observations, Exposure=10, Repeat=1, Filters="v", Binning=1, im
 		f.write(";----------------------------------------------------------------------------\n")
 
 		#Wait until UTC time - 2min to start slewing
-		f.write("#WaitUntil 1, %s\n" % (date - dt.timedelta(seconds = 120)).strftime('%Y/%m/%d %H:%M:%S'))
+		f.write("#WaitUntil 1, %s\n" % (date - dt.timedelta(seconds = 90)).strftime('%Y/%m/%d %H:%M:%S'))
 
 		#Don't preview images as they are captured
 		f.write("#nopreview\n")

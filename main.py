@@ -63,9 +63,11 @@ stop = dt.datetime.utcnow().replace(hour=4, minute=00, second=00)
 
 loc = locations["Lemmon"]
 
-imagePath = "F:\\++__2020.5__++\\Sats\\%s_Starlink" % (start.strftime('%Y-%m-%d'))
+#imagePath = "F:\\++__2020.5__++\\Sats\\%s_Starlink" % (start.strftime('%Y-%m-%d'))
+imagePath = "%s_Starlink" % (start.strftime('%Y-%m-%d'))
 
-staticPath = "C:\\Users\\Pomenis\\Documents\\ACP Astronomy\\Plans"
+#staticPath = "C:\\Users\\Pomenis\\Documents\\ACP Astronomy\\Plans"
+staticPath = imagePath
 
 ###########################
 
@@ -114,11 +116,11 @@ print("Astronomical Twilght is " + twilight.strftime('%Y-%m-%d %H:%M:%S') )
 
 
 #Find all passes
-passes = starlinkPassPredictor(twilight, stop, loc, params, path, "selectedPassesEvening")
+passes = starlinkPassPredictor(twilight, stop, loc, params, path, "allPassesEvening_" + imagePath)
 
 
 #Select some to observe
-passes = selectStarlinkPasses(passes, timePer, path, "selectedPassesEvening")
+passes = selectStarlinkPasses(passes, timePer, path, "selectedPassesEvening_" + imagePath)
 
 
 ###########################
@@ -134,8 +136,8 @@ for p in passes:
 	obs.append([p["name"],p["maxTime"],offset,p["maxRA"],p["maxDec"],p["maxAlt"],p["maxAz"]])
 
 #Write ACP plan for Pomenis
-writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, path + "/" + filename, False)
-writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, staticPath + "/" + filename, False)
+writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, os.path.join(path, filename), False)
+writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, os.path.join(staticPath, filename), False)
 
 
 
@@ -168,10 +170,11 @@ print("Astronomical Twilght is " + twilight.strftime('%Y-%m-%d %H:%M:%S') )
 
 
 #Find all passes
-passes = starlinkPassPredictor(start, twilight, loc, params, path, "selectedPassesMorning")
+# passes = starlinkPassPredictor(start, twilight, loc, params, path, "selectedPassesMorning")
+passes = starlinkPassPredictor(start, stop, loc, params, path, "allPassesMorning_" + imagePath)
 
 #Select some to observe
-passes = selectStarlinkPasses(passes, timePer, path, "selectedPassesMorning")
+passes = selectStarlinkPasses(passes, timePer, path, "selectedPassesMorning_" + imagePath)
 
 
 ###########################
@@ -187,8 +190,8 @@ for p in passes:
 	obs.append([p["name"],p["maxTime"],offset,p["maxRA"],p["maxDec"],p["maxAlt"],p["maxAz"]])
 
 #Write ACP plan for Pomenis
-writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, path + "/" + filename, True)
-writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, staticPath + "/" + filename, True)
+writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, os.path.join(path, filename), True)
+writeAcpPlan(obs, exposureTime, exposureRepeat, filterLetter, binning, imagePath, os.path.join(staticPath, filename), True)
 
 
 ###########################
